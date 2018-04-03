@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+操作页面
+
+<script>
+    var username=localStorage.getItem("username")
+    var createDate=localStorage.getItem("createDate")
+    localStorage.removeItem("username")
+    localStorage.removeItem("createDate")
+    console.log(username,createDate)
+</script>
+</body>
+</html>
