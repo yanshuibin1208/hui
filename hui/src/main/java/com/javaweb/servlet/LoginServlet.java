@@ -31,7 +31,6 @@ public class LoginServlet extends HttpServlet {
         HttpSession session=request.getSession();
         CarDao dao=new CarDao();
         Car user=dao.login(username,password);
-        System.out.println(user);
         JSONObject jo=new JSONObject();
         if(user!=null){
             session.setAttribute("user",user);

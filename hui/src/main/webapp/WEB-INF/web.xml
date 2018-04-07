@@ -31,6 +31,16 @@
     <servlet-class>com.javaweb.servlet.SessionServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>ChangePwdServlet</servlet-name>
+    <servlet-class>com.javaweb.servlet.ChangePwdServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ChangePwdServlet</servlet-name>
+    <url-pattern>/ChangePwdServlet</url-pattern>
+  </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>SessionServlet</servlet-name>
     <url-pattern>/SessionServlet</url-pattern>

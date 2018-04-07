@@ -284,4 +284,23 @@ public class CarDao {
     }
     return car;
   }
+  public int modify(String username,String password,String newpassword) {
+    int count = 0;
+    try {
+      conn = DBUtil.getConnection();
+      String sql = "update car set id=? where id=? AND name=?";
+      ps = conn.prepareStatement(sql);
+      ps.setInt(1, Integer.parseInt(newpassword));
+      ps.setInt(2,Integer.parseInt(password));
+      ps.setString(3, username);
+
+      count = ps.executeUpdate(); // 返回值 1 成功; 0 失败
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      DBUtil.close(conn, ps, rs);
+    }
+    return count;
+  }
+
 }
