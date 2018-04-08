@@ -36,6 +36,16 @@
     <servlet-class>com.javaweb.servlet.ChangePwdServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>CarServlet</servlet-name>
+    <servlet-class>com.javaweb.servlet.CarServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CarServlet</servlet-name>
+    <url-pattern>/CarServlet</url-pattern>
+  </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>ChangePwdServlet</servlet-name>
     <url-pattern>/ChangePwdServlet</url-pattern>
