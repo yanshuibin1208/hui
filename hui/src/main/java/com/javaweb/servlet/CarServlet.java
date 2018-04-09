@@ -46,8 +46,8 @@ public class CarServlet extends HttpServlet {
             List<Car> cars=dao.find();
             json= JSONSerializer.toJSON(cars,jsonConfig);
         }else{
-           Car car=dao.find(Integer.parseInt(id));
-           json=JSONSerializer.toJSON(car,jsonConfig);
+            Car car=dao.find(Integer.parseInt(id));
+            json=JSONSerializer.toJSON(car,jsonConfig);
         }
         out.println(json.toString());
         out.flush();

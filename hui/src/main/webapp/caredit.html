@@ -64,7 +64,7 @@
         var id=localStorage.getItem("id");
         $("#id").val(id)
         localStorage.removeItem("id")
-
+        // 当修改时,先根据 id 查询
         if (id>0){
             $.get("CarServlet",{id:id},(car)=>{
                 $("#id").val(car.id);
@@ -73,7 +73,7 @@
                 $("#createDate").val(car.createDate);
             })
         }
-
+        // 当表单提交时验证,数据合法则提交
         $("#form-edit-car").validate({
             // 验证规则
             rules: {
