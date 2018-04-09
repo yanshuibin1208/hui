@@ -59,5 +59,84 @@
 <script src="js/jquery.validation/jquery.validate.js"></script>
 <script src="js/jquery.validation/validate-methods.js"></script>
 <script src="js/jquery.validation/messages_zh.js"></script>
+<script>
+    $(window).on("load",()=>{
+        var id=localStorage.getItem("id");
+        $("#id").val(id)
+        localStorage.removeItem("id")
+
+        if (id>0){
+            $.get("CarServlet",{id:id},(car)=>{
+                $("#id").val(car.id);
+                $("#name").val(car.name);
+                $("#price").val(car.price);
+                $("#createDate").val(car.createDate);
+            })
+        }
+
+        $("#form-edit-car").validate({
+            // 验证规则
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 6,
+                    maxlength: 20,
+                },
+                price: {
+                    required: true
+                },
+                createDate: {
+                    required: true
+                }
+            },
+            // 自定义信息
+            messages: {
+                name: {
+                    required: "请输入车名",
+                    minlength: "车名的长度应不少于 {0} 位",
+                    maxlength: "车名的长度应不大于 {0} 位"
+                },
+                price: "请输入价格"
+            },
+            onkeyup: false,
+            focusCleanup: true,
+            success: "valid",
+            submitHandler:function (form) {
+                //form表单对象
+                var id=$("#id").val()
+                var name=$("#name").val()
+                var price=$("#price").val()
+                var createDate=$("#createDate").val()
+                var type="post"
+                var url="CarServlet?id="+id+"&name="+name+"&price="+price+"&createDate="+createDate;
+                if (id>0){
+                    type="put"
+                }
+
+
+                $.ajax({
+                    type:type,
+                    url:url,
+                    //data:formData,
+                    dataType:"json",
+                    success:function (data) {
+                        if (data.count==1){
+                            var index=parent.layer.getFrameIndex(window.name)
+                            layer.msg("保存成功",{icon:1,time:1000})
+
+                            setTimeout(()=>{
+                                window.parent.location.reload()
+                                parent.layer.close(index) // 关闭弹窗
+                            }, 800)
+                        }
+                    },
+                    error:function (jqXHR,textStatus,errorthrow) {
+                        layer.alert("系统内部错误，请与管理员联系。")
+                    }
+                })
+            }
+        })
+    })
+</script>
 </body>
 </html>
